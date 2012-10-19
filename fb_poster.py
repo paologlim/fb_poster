@@ -8,9 +8,9 @@ def get_message(links_file, message_separator):
     if len(link_line) > 0:
         return link_line.split(message_separator)
 
-def post_message(message, group_url, access_token):
+def post_message(message, user_url, access_token):
     print "-- Posting message: %s (%s)" % (message[0], message[1])
-    command_string = "curl \"%s?access_token=%s\" -d message=\"%s\" -d link=%s" % (group_url, access_token, message[0], message[1])
+    command_string = "curl \"%s?access_token=%s\" -d message=\"%s\" -d link=%s" % (user_url, access_token, message[0], message[1])
 
     return os.popen3(command_string)
 
@@ -55,7 +55,7 @@ def main():
     config = load_config(config_file_path)
 
     message_separator = config['message_separator']
-    group_url         = "https://graph.facebook.com/%s/feed" % config['group_id']
+    user_url         = "https://graph.facebook.com/%s/feed" % config['user_id']
     access_token      = config['access_token']
     links_file_path   = config['links_file_path']
     links_file        = open(links_file_path, 'r+')
@@ -63,7 +63,7 @@ def main():
     print "Running FB poster!"
     message = get_message(links_file, message_separator)
     if message != None:
-        result = post_message(message, group_url, access_token)
+        result = post_message(message, user_url, access_token)
         if posting_succeeded(result):
             remove_posted_message(links_file)
         else:

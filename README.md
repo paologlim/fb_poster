@@ -18,14 +18,14 @@ Configuration
 ### Description:
 
 * message_separator - The character used to separate the post message and the link
-* group_id          - The fb group id
+* user_id           - The fb user id (the group id for a group, or "me" for your profile)
 * access_token      - An fb access token with a long expiry duration
 * links_file_path   - The absolute file path to the links file
 
 ### Sample:
 
     message_separator: "|"
-    group_id:          "206072162773141"
+    user_id:           "206072162773141"
     access_token:      "SOMEVERYLONGACESSTOKENWITHALONGEXPIRYDURATION"
     links_file_path:   "/path/to/links/links.txt"
 
