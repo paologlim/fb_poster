@@ -6,11 +6,11 @@
 # HOWTO
 #
 # Steps:
-# 1. Create a config file in project directory named fb_group_poster.yml
+# 1. Create a config file in project directory named fb_poster.yml
 #    (See config part below)
 # 2. Create your links file. Remember to separate the post message and the
 #    link with a message separator.
-# 3. Run with python fb_group_poster.py or put in cron.
+# 3. Run with python fb_poster.py or put in cron.
 #
 # CONFIG
 #
@@ -91,7 +91,7 @@ def load_config(file_path):
     return config
 
 def main():
-    config_file_path = "fb_group_poster.yml"
+    config_file_path = "fb_poster.yml"
     config = load_config(config_file_path)
 
     message_separator = config['message_separator']
@@ -100,7 +100,7 @@ def main():
     links_file_path   = config['links_file_path']
     links_file        = open(links_file_path, 'r+')
 
-    print "Running FB group poster!"
+    print "Running FB poster!"
     message = get_message(links_file, message_separator)
     if message != None:
         result = post_message(message, group_url, access_token)
