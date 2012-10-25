@@ -1,5 +1,6 @@
 import os
 import yaml
+from sys import argv
 
 def get_message(links_file, message_separator):
     print "-- Getting message"
@@ -51,7 +52,8 @@ def load_config(file_path):
     return config
 
 def main():
-    config_file_path = "fb_poster.yml"
+    config_file_path = argv[1]
+
     config = load_config(config_file_path)
 
     message_separator = config['message_separator']
